@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
+import { Field } from 'formik';
 
 export const Container = styled.div`
   margin: 0 20px;
@@ -19,7 +20,7 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   height: 50px;
   margin: 0 0 15px 0;
   font-size: 20px;
@@ -30,14 +31,16 @@ export const Input = styled.input`
   }
 `;
 
-export const ButtonSubmit = styled.button`
+export const Button = styled.button`
   border-radius: 50px;
   width: 150px;
   height: 50px;
   font-size: 24px;
   align-self: center;
   cursor: pointer;
-  &:hover {
-      background-color: red;
+  @media (min-width: 768px) {
+      &:hover {
+          background-color: red;
+      }
   }
 `;
