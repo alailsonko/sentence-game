@@ -2,6 +2,7 @@ import {
   SET_ANSWER,
   GET_QUESTION,
   SET_NEXT_QUESTION,
+  SET_RESULT,
 } from './game.types';
 
 const gameData = [{
@@ -59,6 +60,11 @@ export default function game(
       return {
         ...state,
         currentQuestion: state.questions.find((question) => question.id === action.payload.id + 1),
+      };
+    case SET_RESULT:
+      return {
+        ...state,
+        result: `${state.questions[0].answer} ${state.questions[1].answer} ${state.questions[3].answer} ${state.questions[2].answer}.`,
       };
     default:
       return state;

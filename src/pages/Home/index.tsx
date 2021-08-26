@@ -84,11 +84,12 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const currentQuestion = useSelector((state: RootState): IQuestion => state.game.currentQuestion);
   const result = useSelector((state: RootState): IQuestion => state.game.result);
+
   if (!currentQuestion) {
     return (
       <Container>
         <Title>
-          shows the result
+          {result}
         </Title>
       </Container>
     );

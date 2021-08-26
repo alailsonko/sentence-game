@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import {
   SET_ANSWER,
   SET_NEXT_QUESTION,
+  SET_RESULT,
 } from './game.types';
 
 interface IQuestion {
@@ -35,4 +36,9 @@ export const setNextQuestion = (currentQuestion: IQuestion) => async (
     type: SET_NEXT_QUESTION,
     payload: currentQuestion,
   });
+  if (currentQuestion.id === 4) {
+    dispatch({
+      type: SET_RESULT,
+    });
+  }
 };
