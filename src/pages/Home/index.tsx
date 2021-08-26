@@ -8,13 +8,18 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import {
   withFormik, FormikProps, Form,
 } from 'formik';
-import { setAnswer, setNextQuestion } from '../../store/middlewares/game/game.actions';
+import {
+  setAnswer,
+  setNextQuestion,
+  restart,
+} from '../../store/middlewares/game/game.actions';
 import {
   Container,
   Title,
   Wrapper,
   Input,
   Button,
+  TitleResult,
 } from './styles';
 
 interface IQuestion {
@@ -42,7 +47,13 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
           {question.question}
         </Title>
         <Form>
-          <Input type="text" name="answer" />
+          <Input
+            touched={touched.answer}
+            errors={errors.answer}
+            type="text"
+            name="answer"
+            placeholder="Type your answer"
+          />
           {touched.answer && errors.answer && <p>Answer is required.</p>}
           <Button type="submit" disabled={isSubmitting}>
             Next
@@ -84,13 +95,25 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const currentQuestion = useSelector((state: RootState): IQuestion => state.game.currentQuestion);
   const result = useSelector((state: RootState): IQuestion => state.game.result);
-
+  console.log(currentQuestion);
   if (!currentQuestion) {
     return (
       <Container>
-        <Title>
-          {result}
-        </Title>
+        <Title>Sentence Game</Title>
+        <Wrapper>
+          <TitleResult>
+            {result}
+          </TitleResult>
+          <Button
+            type="button"
+            onClick={() => {
+              console.log(currentQuestion);
+              dispatch(restart());
+            }}
+          >
+            Restart
+          </Button>
+        </Wrapper>
       </Container>
     );
   }

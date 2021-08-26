@@ -3,6 +3,7 @@ import {
   GET_QUESTION,
   SET_NEXT_QUESTION,
   SET_RESULT,
+  RESTART,
 } from './game.types';
 
 const gameData = [{
@@ -65,6 +66,13 @@ export default function game(
       return {
         ...state,
         result: `${state.questions[0].answer} ${state.questions[1].answer} ${state.questions[3].answer} ${state.questions[2].answer}.`,
+      };
+    case RESTART:
+      return {
+        ...state,
+        questions: gameData,
+        result: '',
+        currentQuestion: state.questions[0],
       };
     default:
       return state;

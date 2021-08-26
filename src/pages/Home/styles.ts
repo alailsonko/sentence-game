@@ -11,22 +11,39 @@ export const Container = styled.div`
 
 export const Title = styled.h2``;
 
+export const TitleResult = styled.h2`
+  align-self: center;
+`;
+
 export const Wrapper = styled.div`
-  /* background: red; */
+  background: yellow;
   border: 0.1px solid gray;
-  /* border-radius: 3px; */
+  border-radius: 3px;
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 3px;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    p {
+      margin: 3px 0;
+      color: red;
+    }
+  }
 `;
 
 export const Input = styled(Field)`
-  height: 50px;
-  margin: 0 0 15px 0;
+  height: 30px;
+  margin: 0 0 5px 0;
   font-size: 20px;
+  border-color: ${(props) => (props.touched && props.errors ? 'red' : 'green')};
+  border-width: 2px;
+  outline: none;
   &:focus {
     outline: none;
-    border-color: red;
+    border-color: ${(props) => (props.touched && props.errors ? 'red' : 'green')};
     box-shadow: 0px 0px 2px red;
   }
 `;
@@ -34,13 +51,8 @@ export const Input = styled(Field)`
 export const Button = styled.button`
   border-radius: 50px;
   width: 150px;
-  height: 50px;
+  height: 40px;
   font-size: 24px;
   align-self: center;
   cursor: pointer;
-  @media (min-width: 768px) {
-      &:hover {
-          background-color: red;
-      }
-  }
 `;

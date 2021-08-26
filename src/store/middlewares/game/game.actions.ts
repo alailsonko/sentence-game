@@ -5,6 +5,7 @@ import {
   SET_ANSWER,
   SET_NEXT_QUESTION,
   SET_RESULT,
+  RESTART,
 } from './game.types';
 
 interface IQuestion {
@@ -41,4 +42,10 @@ export const setNextQuestion = (currentQuestion: IQuestion) => async (
       type: SET_RESULT,
     });
   }
+};
+
+export const restart = () => async (dispatch: Dispatch<ActionDispatchType>) => {
+  dispatch({
+    type: RESTART,
+  });
 };

@@ -3,3 +3,4 @@ export const SET_ANSWER = '@GAME/SET_ANSWER';
 export const SET_NEXT_QUESTION = '@GAME/GET_NEXT_QUESTION';
 export const GET_QUESTION = '@GAME/GET_QUESTION';
 export const SET_RESULT = '@GAME/SET_RESULT';
+export const RESTART = '@GAME/RESTART';
