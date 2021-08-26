@@ -6,6 +6,7 @@ import {
   SET_NEXT_QUESTION,
   SET_RESULT,
   RESTART,
+  SET_BACK_QUESTION,
 } from './game.types';
 
 interface IQuestion {
@@ -42,6 +43,15 @@ export const setNextQuestion = (currentQuestion: IQuestion) => async (
       type: SET_RESULT,
     });
   }
+};
+
+export const setBackQuestion = (currentQuestion: IQuestion) => async (
+  dispatch: Dispatch<ActionDispatchType>,
+) => {
+  dispatch({
+    type: SET_BACK_QUESTION,
+    payload: currentQuestion,
+  });
 };
 
 export const restart = () => async (dispatch: Dispatch<ActionDispatchType>) => {

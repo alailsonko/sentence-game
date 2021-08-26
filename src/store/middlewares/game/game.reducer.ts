@@ -4,6 +4,7 @@ import {
   SET_NEXT_QUESTION,
   SET_RESULT,
   RESTART,
+  SET_BACK_QUESTION,
 } from './game.types';
 
 const gameData = [{
@@ -62,6 +63,11 @@ export default function game(
         ...state,
         currentQuestion: state.questions.find((question) => question.id === action.payload.id + 1),
       };
+    case SET_BACK_QUESTION:
+      return {
+        ...state,
+        currentQuestion: state.questions.find((question) => question.id === action.payload.id - 1),
+      };
     case SET_RESULT:
       return {
         ...state,
@@ -72,7 +78,7 @@ export default function game(
         ...state,
         questions: gameData,
         result: '',
-        currentQuestion: state.questions[0],
+        currentQuestion: gameData[0],
       };
     default:
       return state;

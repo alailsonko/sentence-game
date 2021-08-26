@@ -26,10 +26,13 @@ export const Wrapper = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 500px;
     p {
       margin: 3px 0;
       color: red;
+    }
+    div {
+      align-self: center;
     }
   }
 `;

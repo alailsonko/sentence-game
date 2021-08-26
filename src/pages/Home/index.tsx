@@ -12,6 +12,7 @@ import {
   setAnswer,
   setNextQuestion,
   restart,
+  setBackQuestion,
 } from '../../store/middlewares/game/game.actions';
 import {
   Container,
@@ -39,6 +40,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   const {
     touched, errors, isSubmitting, question,
   } = props;
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -50,14 +52,26 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
           <Input
             touched={touched.answer}
             errors={errors.answer}
+            id="answer"
             type="text"
             name="answer"
             placeholder="Type your answer"
           />
           {touched.answer && errors.answer && <p>Answer is required.</p>}
-          <Button type="submit" disabled={isSubmitting}>
-            Next
-          </Button>
+          <div>
+            <Button
+              type="button"
+              disabled={question.id === 1}
+              onClick={() => {
+                dispatch(setBackQuestion(question));
+              }}
+            >
+              Back
+            </Button>
+            <Button type="submit" disabled={isSubmitting}>
+              Next
+            </Button>
+          </div>
         </Form>
       </Wrapper>
     </div>
@@ -76,7 +90,7 @@ const QuestionSchemaValidation = Yup.object({
 
 const QuestionForm = withFormik<QuestionFormProps, FormValues>({
   mapPropsToValues: (props) => ({
-    answer: props.initialAnswer || '',
+    answer: '',
   }),
   validationSchema: QuestionSchemaValidation,
   handleSubmit: async (values, { props, setSubmitting }) => {
@@ -95,7 +109,6 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const currentQuestion = useSelector((state: RootState): IQuestion => state.game.currentQuestion);
   const result = useSelector((state: RootState): IQuestion => state.game.result);
-  console.log(currentQuestion);
   if (!currentQuestion) {
     return (
       <Container>
@@ -107,7 +120,6 @@ const Home: React.FC = () => {
           <Button
             type="button"
             onClick={() => {
-              console.log(currentQuestion);
               dispatch(restart());
             }}
           >
