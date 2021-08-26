@@ -1,12 +1,14 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import { Dispatch } from 'redux';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import {
   withFormik, FormikProps, Form,
 } from 'formik';
+import { setAnswer, setNextQuestion } from '../../store/middlewares/game/game.actions';
 import {
   Container,
   Title,
@@ -15,12 +17,17 @@ import {
   Button,
 } from './styles';
 
+interface IQuestion {
+    id: number,
+    question: string,
+    answer: string,
+}
 interface FormValues {
     answer: string
 }
 
 interface OtherProps {
-    question: string
+    question: IQuestion
 }
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
@@ -32,7 +39,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
     <div>
       <Wrapper>
         <Title>
-          {question}
+          {question.question}
         </Title>
         <Form>
           <Input type="text" name="answer" />
@@ -48,7 +55,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
 interface QuestionFormProps {
     initialAnswer?: string;
-    question: string
+    question: IQuestion
     dispatch: Dispatch<any>
   }
 
@@ -62,17 +69,34 @@ const QuestionForm = withFormik<QuestionFormProps, FormValues>({
   }),
   validationSchema: QuestionSchemaValidation,
   handleSubmit: async (values, { props, setSubmitting }) => {
-    console.log('hello', values);
+    props.dispatch(setAnswer(values.answer, props.question));
+    props.dispatch(setNextQuestion(props.question));
+    values.answer = '';
     setSubmitting(true);
   },
 })(InnerForm);
 
+interface RootState {
+  game: any
+}
+
 const Home: React.FC = () => {
   const dispatch = useDispatch();
+  const currentQuestion = useSelector((state: RootState): IQuestion => state.game.currentQuestion);
+  const result = useSelector((state: RootState): IQuestion => state.game.result);
+  if (!currentQuestion) {
+    return (
+      <Container>
+        <Title>
+          shows the result
+        </Title>
+      </Container>
+    );
+  }
   return (
     <Container>
       <Title>Sentence Game</Title>
-      <QuestionForm question="Who" dispatch={dispatch} />
+      <QuestionForm question={currentQuestion} dispatch={dispatch} />
     </Container>
   );
 };
