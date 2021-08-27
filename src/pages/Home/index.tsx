@@ -21,6 +21,8 @@ import {
   Input,
   Button,
   TitleResult,
+  ButtonNext,
+  ButtonBack,
 } from './styles';
 
 interface IQuestion {
@@ -59,7 +61,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
           />
           {touched.answer && errors.answer && <p>Answer is required.</p>}
           <div>
-            <Button
+            <ButtonBack
               type="button"
               disabled={question.id === 1}
               onClick={() => {
@@ -67,10 +69,10 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
               }}
             >
               Back
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
+            </ButtonBack>
+            <ButtonNext type="submit" disabled={isSubmitting}>
               Next
-            </Button>
+            </ButtonNext>
           </div>
         </Form>
       </Wrapper>
