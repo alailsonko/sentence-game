@@ -45,38 +45,36 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <Wrapper>
-        <Title>
-          {question.question}
-        </Title>
-        <Form>
-          <Input
-            touched={touched.answer}
-            errors={errors.answer}
-            id="answer"
-            type="text"
-            name="answer"
-            placeholder="Type your answer"
-          />
-          {touched.answer && errors.answer && <p>Answer is required.</p>}
-          <div>
-            <ButtonBack
-              type="button"
-              disabled={question.id === 1}
-              onClick={() => {
-                dispatch(setBackQuestion(question));
-              }}
-            >
-              Back
-            </ButtonBack>
-            <ButtonNext type="submit" disabled={isSubmitting}>
-              Next
-            </ButtonNext>
-          </div>
-        </Form>
-      </Wrapper>
-    </div>
+    <>
+      <Title>
+        {question.question}
+      </Title>
+      <Form>
+        <Input
+          touched={touched.answer}
+          errors={errors.answer}
+          id="answer"
+          type="text"
+          name="answer"
+          placeholder="Type your answer"
+        />
+        {touched.answer && errors.answer && <p>Answer is required.</p>}
+        <div>
+          <ButtonBack
+            type="button"
+            disabled={question.id === 1}
+            onClick={() => {
+              dispatch(setBackQuestion(question));
+            }}
+          >
+            Back
+          </ButtonBack>
+          <ButtonNext type="submit" disabled={isSubmitting}>
+            Next
+          </ButtonNext>
+        </div>
+      </Form>
+    </>
   );
 };
 
@@ -134,7 +132,9 @@ const Home: React.FC = () => {
   return (
     <Container>
       <Title>Sentence Game</Title>
-      <QuestionForm question={currentQuestion} dispatch={dispatch} />
+      <Wrapper>
+        <QuestionForm question={currentQuestion} dispatch={dispatch} />
+      </Wrapper>
     </Container>
   );
 };
