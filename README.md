@@ -1,6 +1,8 @@
 # [LINK OF DEPLOYED APP - CLICK HERE](https://happy-goldberg-35f940.netlify.app/).
 # Getting Started with Create React App
 
+![image](https://www.awesomescreenshot.com/image/12553624?key=228bb323667616c2e268b7d0d94bcbe5)
+
 ## Dependencies
 * React - UI library
 * Redux - state managemente
