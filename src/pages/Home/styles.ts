@@ -26,12 +26,17 @@ export const Wrapper = styled.div`
   height: 180px;
   padding: 3px;
   align-items: center;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
   form {
     display: flex;
     flex-direction: column;
     width: 500px;
     height: 180%;
-    /* background-color: red; */
+    @media (max-width: 500px) {
+      width: 100%;
+    }
     p {
       margin: 3px 0;
       color: red;
