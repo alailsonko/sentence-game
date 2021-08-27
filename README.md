@@ -2,6 +2,7 @@
 # Getting Started with Create React App
 
 ![image](./docs/images/website.png)
+![image](./docs/images/mobile.png)
 
 ## Dependencies
 * React - UI library
