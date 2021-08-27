@@ -1,4 +1,4 @@
-# [LINK OF DEPLOYED APP](https://happy-goldberg-35f940.netlify.app/).
+# [LINK OF DEPLOYED APP - CLICK HERE](https://happy-goldberg-35f940.netlify.app/).
 # Getting Started with Create React App
 
 
