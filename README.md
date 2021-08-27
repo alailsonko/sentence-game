@@ -1,6 +1,13 @@
 # [LINK OF DEPLOYED APP - CLICK HERE](https://happy-goldberg-35f940.netlify.app/).
 # Getting Started with Create React App
 
+## Dependencies
+* React - UI library
+* Redux - state managemente
+* Typescript - superset
+* Styled-Components - styling
+* Formik - build forms
+* Yup - validation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
